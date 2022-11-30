@@ -1,5 +1,25 @@
 # blogProejct
 
+<h2>프로젝트 개발 환경</h2>
+<h3>Front</h3>
+<ul>
+<h4>HTML5&CSS3&JS</h4>
+</ul>
+<h3>Back</h3>
+<ul>
+<h4>Language : JAVA8</h4>
+<h4>Framwork : Spring Boot 2.7.6 , Spring Security , Spring Data JPA , Redis</h4>
+<h4>Server : Apache Tomcat9.0</h4>
+<h4>DataBase : MySQL</h4>
+
+
+</ul>
+<h3>Tools</h3>
+<ul>
+<h4>IntelliJ</h4>
+</ul>
+
+<br>
 
 
 <h3>시큐리티 설정하여 페이지 접근 권한과 ,로그인 화면 설정</h3>
@@ -58,11 +78,13 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
 ```
 
+<hr>
 
 <h3> Securiy의 Authentication 객체를  사용하기 위해  해당 인터페이스를 구현한다.</h3>
 
 
-```JAVA 
+```JAVA
+
 @Getter
 public class PrincipalDetail implements UserDetails, OAuth2User {  
     private User user;
@@ -122,7 +144,6 @@ public class PrincipalDetail implements UserDetails, OAuth2User {
         return null;
     }
 }
-
 ```
 
 
@@ -149,10 +170,11 @@ public class PrincipalDetailService implements UserDetailsService {
 }
 ```
 
+<hr>
 
 <h3>OAtuth2를 사용하여 소셜 로그인을 구현한다.  요청을 통해 응받으로 받은 토큰을 활용하여 , 로그인 한 사용자의 정보를 요청한다 
-정보가 정상적으로 오면 자동으로 회원가입을 진행하며 , 이전에 가입했던 기록이 있으면 추가적인 회원가입 없이 
-</h3>
+정보가 정상적으로 오면 자동으로 회원가입을 진행하며 , 이전에 가입했던 기록이 있으면 추가적인 회원가입 없이 </h3>
+
 ```JAVA
 @Service
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
@@ -198,6 +220,35 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         return new PrincipalDetail(userEntity,oAuth2User.getAttributes());
     }
 }
+```
+<hr>
+
+
+<h3>공통으로 사용될 인터페이스를 생성하여  Google, Kakao,Naver클래스가 구현하게 했다</h3>
+
+```JAVA
+public interface OAuth2UserInfo {
+    String getProviderId();
+    String getProvider();
+    String getEmail();
+    String getName();
+}
+```
+
+<hr>
+
+<h3>회원가입 시 이메일로 인증번호를 보내는데 , 인증번호를 암호화하고 ,유효시간을 설정하여 Redis에 저장 </h3>
+
+```JAVA
+ public int emailAuthNumberCehck(String authnum) {
+        ValueOperations<String, String> stringStringValueOperations=redisTemplate.opsForValue();
+        String originalNum=stringStringValueOperations.get("authNum");
+        if(encoder.matches(authnum,originalNum)){
+                 return 1;
+        }
+        return 0;
+    }
+
 ```
 
 
