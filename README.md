@@ -2,11 +2,7 @@
 
 
 
-
-
-
-
-
+<h3>시큐리티 설정하여 페이지 접근 권한과 ,로그인 화면 설정</h3>
 
 ```JAVA
 @Configuration
@@ -61,9 +57,9 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 }
 
 ```
-<h3>스프링 시큐리티 설정하여 페이지 접근 권한과 ,로그인 화면 설정</h3>
 
 
+<h3> Securiy의 Authentication 객체를  사용하기 위해  해당 인터페이스를 구현한다.</h3>
 
 
 ```JAVA 
@@ -153,6 +149,10 @@ public class PrincipalDetailService implements UserDetailsService {
 }
 ```
 
+
+<h3>OAtuth2를 사용하여 소셜 로그인을 구현한다.  요청을 통해 응받으로 받은 토큰을 활용하여 , 로그인 한 사용자의 정보를 요청한다 
+정보가 정상적으로 오면 자동으로 회원가입을 진행하며 , 이전에 가입했던 기록이 있으면 추가적인 회원가입 없이 
+</h3>
 ```JAVA
 @Service
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
