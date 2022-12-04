@@ -47,6 +47,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/auth/joinForm"><h3>회원가입</h3></a>
                     </li>
+
                 </ul>
             </c:when>
 
