@@ -62,4 +62,21 @@ public class BoardRepositoryTest {
 
         log.info("게시글 삭제 테스트 성공");
     }
+
+    @Test
+    @DisplayName("게시글 조회 테스트")
+    public void selectBoard(){
+        Board board=new Board(1,"title","content");
+        boardRepository.save(board);
+
+        Board boardEntity= boardRepository.findById(1).get();
+
+        assertNotNull(boardRepository.findById(1));
+
+        assertEquals(board.getTitle(),boardEntity.getTitle());
+        assertEquals(board.getContent(),boardEntity.getContent());
+
+        log.info("게시글 조회 테스트 성공");
+    }
+
 }
