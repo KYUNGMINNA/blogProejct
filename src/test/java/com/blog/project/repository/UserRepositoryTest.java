@@ -74,6 +74,18 @@ public class UserRepositoryTest {
 
         log.info(userUpdate.toString());
         log.info("회원 비밀번호 이메일 변경 테스트 성공 ");
+    }
 
+    @Test
+    @DisplayName("회원 탈퇴 테스트 ")
+    public void deleteUser(){
+        User user=new User(1,"aa","bb","ccc");
+        User userEntity=userRepository.save(user);
+
+        userRepository.delete(user);
+        User deleteUser=userRepository.findByUsername("aa");
+
+        assertNull(deleteUser);
+        log.info("회원 탈퇴 테스트 성공");
     }
 }
