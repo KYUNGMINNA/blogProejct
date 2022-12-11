@@ -4,6 +4,7 @@ package com.blog.project.repository;
 
 
 import com.blog.project.model.Board;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import javax.persistence.EntityManager;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,7 +25,15 @@ public class BoardRepositoryTest {
     private final Logger log = LoggerFactory.getLogger(BoardRepositoryTest.class);
     @Autowired
     private BoardRepository boardRepository;
+    @Autowired
+    private EntityManager entityManager;
 
+    @BeforeEach //autu_increment를 테스트 할 때 마다 초기화 시켜줌 !
+    public void init(){
+        entityManager.createNativeQuery("ALTER TABLE Board AUTO_INCREMENT=1").executeUpdate();
+
+
+    }
     @Test
     @DisplayName("게시글 작성 테스트")
     public void insertBoard(){
