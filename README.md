@@ -4,7 +4,7 @@
 <br><br><br>
 
 <h2>기능</h2>
-<h3>Restful API</h3>
+<h3>Restful API설계</h3>
 <h3>회원가입 ( 아이디 중복 확인 | 이메일 인증번호 전송 및 인증번호 확인 - Redis 인증번호 유효시간 설정 )</h3>
 <h3>로그인( SeucrityContext 사용하여 유지)  |  구글, 카카오 ,네이버 로그인 -OAuth2 </h3>
 <h3>게시글 작성 (시큐리티 권한 설정하여 로그인한 사용자만 작성 |  해당 게시글 작성자만 수정, 삭제</h3>
@@ -32,6 +32,24 @@
 </ul>
 
 <br>
+
+<hr>
+
+<h3>Restful API 설계 - Controller의 분리 </h3>
+
+<br>
+
+<h4>RestController</h4>
+
+![image](https://user-images.githubusercontent.com/62867182/206895692-9c5f26ad-dbf9-416d-a99d-dca82e794f98.png)
+
+<br>
+
+<h4>Controller</h4>
+
+![image](https://user-images.githubusercontent.com/62867182/206895729-e647867a-c7b1-4e8d-9954-6f0fce318383.png)
+
+
 
 
 <h3>시큐리티 설정하여 페이지 접근 권한과 ,로그인 화면 설정</h3>
