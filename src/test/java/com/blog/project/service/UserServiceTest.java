@@ -43,6 +43,7 @@ public class UserServiceTest {
         User user=new User(1,"aaa","bbb","ccc");
 
         //stub --findBYId 는   Optional<User>
+        //PR 로 값 비교 지양해야 함 !
          Optional<User> userOP=Optional.of(user);
         when(userRepository.findByUsername(any())).thenReturn(userOP.get());
 
